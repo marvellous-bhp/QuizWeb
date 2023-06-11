@@ -1,0 +1,63 @@
+{
+    "response_code": 0,
+    "results": [
+      {
+        "category": "General Knowledge",
+        "type": "boolean",
+        "difficulty": "medium",
+        "question": "There are 86400 seconds in a day.",
+        "correct_answer": "True",
+        "incorrect_answers": [
+          "False"
+        ]
+      },
+      {
+        "category": "Entertainment: Video Games",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "What is the title of song on the main menu in Halo?",
+        "correct_answer": "Halo",
+        "incorrect_answers": [
+          "Opening Suite",
+          "Shadows",
+          "Suite Autumn"
+        ]
+      },
+      {
+        "category": "Science: Computers",
+        "type": "multiple",
+        "difficulty": "easy",
+        "question": "What color would be displayed from the color code?",
+        "correct_answer": "Green",
+        "incorrect_answers": [
+          "Red",
+          "Blue",
+          "Yellow"
+        ]
+      },
+      {
+        "category": "Politics",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "What is former United States President Bill Clinton full name?",
+        "correct_answer": "William Jefferson Clinton",
+        "incorrect_answers": [
+          "William Roosevelt Clinton",
+          "William Truman Clinton",
+          "William Lincoln Clinton"
+        ]
+      },
+      {
+        "category": "Entertainment: Music",
+        "type": "multiple",
+        "difficulty": "medium",
+        "question": "Which Aerosmith album featured Walk This Way?",
+        "correct_answer": "Toys in the Attic",
+        "incorrect_answers": [
+          "Rocks",
+          "Get Your Wings",
+          "Draw the Line"
+        ]
+      }
+    ]
+  }

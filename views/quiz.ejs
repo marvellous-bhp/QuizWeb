@@ -1,0 +1,135 @@
+<%let quesNum = question; %>
+<%let corNum = correctAnswer; %>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/quiz.css" />
+  <script src="js/helper.js"></script>
+</head>
+<body>
+  <main>
+      
+
+      <div class="game-quiz-container">
+
+          <div class="game-details-container">
+              <h1>Score : <span id="player-score"><%= corNum%></span> / <%=quiz.length%></h1>
+              <h1> Question : <span id="question-number"><%= quesNum%></span> / <%=quiz.length%></h1>
+          </div>
+          <% quiz.forEach(question => { %>
+            <% if(question.id == quesNum){ %>
+              <div class="game-question-container">
+                <h1 >
+                  <textarea id="display-question" name="" id="" cols="65" rows="3" style="background-color: lightgray; border: none;"><%= (question.question)  %></textarea>
+                  </h1>
+              </div>
+  
+              <div class="game-options-container">
+  
+                <div class="modal-container" id="option-modal">
+  
+                      <div class="modal-content-container">
+                          <h1>Please Pick An Option</h1>
+  
+                          <div class="modal-button-container">
+                              <button onclick="closeOptionModal()">Continue</button>
+                          </div>
+  
+                      </div>
+  
+                </div>
+                <!-- <div class="answer-group" onclick="check()"> -->
+                  <% question.incorrect_answers.forEach((answer, index) => { %>
+                    <span>
+                      <input onchange="check(this)" type="radio" id="option-<%= index %>" name="option-<%= index %>" class="radio" value="<%= answer%>" />
+                      <label for="option-<%= index %>" class="option" id="option-<%= index %>"><%= answer%></label>
+                    </span>
+                  <%}) %>
+  
+                  
+  
+              </div>
+  
+              <div class="next-button-container">
+                  
+              </div>
+           <% } %>
+            
+            <%}) %>
+      </div>
+  </main>
+  <script src="index.js"></script>
+  <script>
+    let quesNum = <%= Number(quesNum) + 1 %>;
+    let corNum = <%= Number(corNum)  %>;
+    function check(e) {
+      let data = `<%- quiz[quesNum-1].correct_answer %>`;
+      // console.log('gagas',e);
+      chosenAns = e.value;
+      // console.log();
+      // console.log('...',<%- quesNum%>,e.name,'...');
+      console.log('lll',data,chosenAns==data);
+      if(chosenAns!=data){
+        
+        // $(e).css('background','green');
+        $("." + e.name).css('background','red') 
+      }
+      else{
+        corNum += 1; 
+      }
+      let url = `/question/${quesNum}`;
+      let dataaaaa = { correct: 'corNum' };
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataaaaa)
+      })
+      .then(response => response.json())
+      .then(responseData => {
+        // Handle the response data
+        console.log('responseData',responseData);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+
+      console.log('...',corNum,'...');
+      
+      let inputArr = $('label[class="option"]')
+      for (let i = 0; i < inputArr.length; i++) {
+        let answer = inputArr[i].innerText;
+        if (data == answer) {
+          $(inputArr[i]).css('background','green')
+        }
+        
+        // console.log(element,'ele');
+        
+      }
+      
+      if(quesNum<= <%- quiz.length %>){
+        $(`.next-button-container`).append(`<a class='next-question' href="/question/${quesNum}/${corNum}">Next Question</a>`)
+      }
+      else{
+        $(`.next-button-container`).append(`
+        <a href="/question/finish/${corNum}" >Finish</a>
+        `)
+      }   
+      
+      
+    }
+    function handleNextQuestion(){
+
+    }
+    // <a href="#" onclick="performPostAndGetData()">Click me</a>
+
+    function performPostAndGetData() {
+      // Perform the POST request
+      
+    }
+
+  </script>
+</body>

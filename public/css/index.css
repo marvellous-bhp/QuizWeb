@@ -1,0 +1,32 @@
+body{
+    background-color: rgb(38, 41, 75);
+
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 100vh;
+}
+a{
+    color: white;
+    text-decoration: none;
+
+}
+
+.modal-content-container  h1{
+    color: black!important;
+}
+
+.modal-content-container .grade-details p{
+    color: black!important;
+}
+
+.modal-container{
+    background-color: white;
+    border-radius: 25px;
+    padding: 25px;
+}
